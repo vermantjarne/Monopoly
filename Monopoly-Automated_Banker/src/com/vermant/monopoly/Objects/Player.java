@@ -1,4 +1,4 @@
-package com.vermant.monopoly.Data;
+package com.vermant.monopoly.Objects;
 
 import java.util.List;
 
@@ -6,12 +6,11 @@ public class Player {
 
     // Player attributes
     private String name;
-    private Token token;
+    private int balance = 1500;
     private List<Property> properties;
 
     // Constructor
     public Player() {
-
     }
 
     // Get: Get name of player
@@ -24,14 +23,24 @@ public class Player {
         this.name = name;
     }
 
-    // Get: Get token of player
-    public Token getToken() {
-        return token;
+    /** @Type Getter */
+    /** @Info Gets the balance of a player */
+    public int getBalance() {
+        return balance;
     }
 
-    // Set: Set token of player
-    public void setToken(Token token) {
-        this.token = token;
+    /** @Type Setter */
+    /** @Info Increases the balance of a player */
+    public Player increaseBalance(int amount) {
+        this.balance = this.balance + amount;
+        return this;
+    }
+
+    /** @Type Setter */
+    /** @Info Decreases the balance of a player */
+    public Player decreaseBalance(int amount) {
+        this.balance = this.balance - amount;
+        return this;
     }
 
     // Get: Get properties of player
