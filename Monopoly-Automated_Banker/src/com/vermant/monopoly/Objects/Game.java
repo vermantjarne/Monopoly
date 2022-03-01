@@ -114,7 +114,7 @@ public class Game {
 
             // Street 8
             this.addProperty(8, new Property("Park Place", 350))
-                .addProperty(9, new Property("Boardwalk", 400));
+                .addProperty(8, new Property("Boardwalk", 400));
         }
         
         /* Settings */
@@ -167,8 +167,8 @@ public class Game {
         System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Game Started" + ConsoleColors.RESET);
 
         /* Actions */
-        String input = "";
-        while ( !input.equals("END") ) {
+        int input = 0;
+        while (winner == null) {
 
             for (Player player : getPlayers()) {
 
@@ -182,24 +182,41 @@ public class Game {
                 System.out.println("4. Pass by GO");
                 System.out.println("5. Get out of jail");
                 System.out.println("6. Declare bankruptcy");
+                System.out.println(ConsoleColors.WHITE + "0. Skip turn" + ConsoleColors.RESET);
                 System.out.println();
 
                 // Request action input
-                input = scanner.nextLine();
-
+                input = Integer.parseInt(scanner.nextLine());
 
                 // Determine action
+                while (!(0 <= input && input <= 6)) {
+                    System.out.print("Enter a valid number between 0-6. ");
+                }
                 switch (input) {
-                    case "4": Action.passByGO(player);
-                    case "5": Action.getOutOfJail(player);
-                    default: break;
+                    case 1 -> {
+
+                        // Request property position
+                        System.out.print("Which set does your property belong to (1-" + getSets().size() + ")? ");
+                        int property_set = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Which street in the set does your property belong to (1-" + getSets().get(property_set - 1).size() + ")? ");
+                        int property_street = Integer.parseInt(scanner.nextLine());
+
+                        // Purchase property
+                        Property property = getSets().get(property_set - 1).get(property_street - 1);
+                        Action.buyProperty(this, player, property);
+
+                    }
+                    case 4 -> Action.passByGO(player);
+                    case 5 -> Action.getOutOfJail(player);
                 }
 
+                // Show player income and properties
                 for (Player allPlayer : getPlayers()) {
-                    System.out.println(allPlayer.getName() + ": $" + allPlayer.getBalance());
+                    System.out.println(allPlayer.getName() + ":\n\t$" + allPlayer.getBalance() + "\n\t" + allPlayer.getProperties());
                 }
 
-                input = "";
+                // Reset input
+                input = 0;
 
             }
 
