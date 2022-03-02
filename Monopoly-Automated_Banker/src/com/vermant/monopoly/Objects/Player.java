@@ -1,5 +1,6 @@
 package com.vermant.monopoly.Objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -7,7 +8,7 @@ public class Player {
     // Player attributes
     private String name;
     private int balance = 1500;
-    private List<Property> properties;
+    private ArrayList<Property> properties = new ArrayList<>();
 
     // Constructor
     public Player() {
@@ -44,7 +45,7 @@ public class Player {
     }
 
     // Get: Get properties of player
-    public List<Property> getProperties() {
+    public ArrayList<Property> getProperties() {
         return properties;
     }
 
@@ -56,14 +57,16 @@ public class Player {
 
     /** @Type Setter */
     /** @Info Adds a property to the player's properties */
-    public void addProperty(Property property) {
+    public Player addProperty(Property property) {
         properties.add(property);
+        return this;
     }
 
     /** @Type Setter */
     /** @Info Removes a property from the player's properties */
-    public void removeProperty(Property property) {
+    public Player removeProperty(Property property) {
         properties.remove(property);
+        return this;
     }
 
 }
