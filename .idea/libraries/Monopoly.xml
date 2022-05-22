@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Monopoly">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Monopoly/out/artifacts/Monopoly/Monopoly.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
